@@ -19,7 +19,7 @@ jobs:
       if: matrix.platform == 'amd64'
       run: |
         sudo apt-get update
-        sudo apt-get install cmake ninja-build qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev
+        sudo apt-get install cmake ninja-build qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
     - name: i386 | Install libs
       if: matrix.platform == 'i386'
       run: |
@@ -37,6 +37,7 @@ jobs:
         curl -LJO https://github.com/q4a/juffed/releases/download/i386-deps/libqscintilla2-qt5-dev_2.11.2+dfsg-5_i386.deb
         curl -LJO https://github.com/q4a/juffed/releases/download/i386-deps/libqtermwidget5-0-dev_0.14.1-0ubuntu3_i386.deb
         curl -LJO https://github.com/q4a/juffed/releases/download/i386-deps/libqtermwidget5-0_0.14.1-0ubuntu3_i386.deb
+        curl -LJO https://github.com/q4a/juffed/releases/download/i386-deps/libutf8proc-dev_2.4.0-2build1_i386.deb
         curl -LJO https://github.com/q4a/juffed/releases/download/i386-deps/libutf8proc2_2.4.0-2build1_i386.deb
         curl -LJO https://github.com/q4a/juffed/releases/download/i386-deps/qtermwidget5-data_0.14.1-0ubuntu3_all.deb
         sudo dpkg -i *.deb
