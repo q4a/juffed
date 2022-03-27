@@ -11,8 +11,8 @@ jobs:
         configuration: [Release, Debug]
         platform: [armv7, aarch64, i386, amd64]
         exclude:
-        - configuration: Debug
-          platform: [armv7, aarch64]
+          - configuration: Debug
+            platform: [armv7, aarch64]
     name: 'Linux ${{ matrix.configuration}} ${{ matrix.platform}}'
     steps:
     - uses: actions/checkout@v2
@@ -90,8 +90,8 @@ jobs:
         distro: ubuntu20.04
         run: |
           cat /etc/apt/sources.list
-          sudo apt-get update
-          sudo apt-get install cmake ninja-build qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
+          apt-get update
+          apt-get install cmake ninja-build qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
           mkdir build && cd build
           cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
           ninja
