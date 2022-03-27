@@ -10,6 +10,9 @@ jobs:
       matrix:
         configuration: [Release, Debug]
         platform: [armv7, aarch64, i386, amd64]
+        exclude:
+        - configuration: Debug
+          platform: [armv7, aarch64]
     name: 'Linux ${{ matrix.configuration}} ${{ matrix.platform}}'
     steps:
     - uses: actions/checkout@v2
