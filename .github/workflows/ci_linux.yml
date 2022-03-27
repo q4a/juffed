@@ -11,13 +11,17 @@ jobs:
         configuration: [Release, Debug]
         platform: [armv7, aarch64, i386, amd64]
         exclude:
-          - configuration: Debug
-            platform: [armv7, aarch64]
+          - {configuration: Debug, platform: armv7}
+          - {configuration: Debug, platform: aarch64}
     name: 'Linux ${{ matrix.configuration}} ${{ matrix.platform}}'
     steps:
     - uses: actions/checkout@v2
       with:
         submodules: 'recursive'
+
+    - name: Save current datetime
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d_%H-%M')"
 
     - name: amd64 | Install libs
       if: matrix.platform == 'amd64'
@@ -60,10 +64,6 @@ jobs:
       run: ninja
       working-directory: build
 
-    - name: Save current datetime
-      id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d_%H-%M')"
-
     - name: Release amd64 | Build deb packages with debuild
       if: matrix.configuration == 'Release' && matrix.platform == 'amd64'
       run: |
@@ -88,6 +88,8 @@ jobs:
       with:
         arch: ${{ matrix.platform }}
         distro: ubuntu20.04
+        # GitHub token used for caching Docker images in project's public package registry
+        githubToken: ${{ github.token }}
         run: |
           cat /etc/apt/sources.list
           apt-get update
