@@ -94,8 +94,8 @@ jobs:
         install: |
           export DEBIAN_FRONTEND=noninteractive
           apt-get update -q -y
+          apt-get install -q -y gcc g++ apt-utils
           apt-get install -q -y cmake ninja-build qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
-          apt-get install -y gcc g++
         run: |
           mkdir build && cd build
           #cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
