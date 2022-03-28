@@ -92,8 +92,8 @@ jobs:
         githubToken: ${{ github.token }}
         run: |
           export DEBIAN_FRONTEND=noninteractive
-          apt-get update
-          apt-get install cmake ninja-build qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
+          apt-get -qq update
+          apt-get install -y cmake ninja-build qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
           mkdir build && cd build
           cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
           ninja
