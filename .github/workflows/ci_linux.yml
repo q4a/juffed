@@ -97,10 +97,10 @@ jobs:
           apt-get install -q -y gcc g++ apt-utils
           apt-get install -q -y cmake ninja-build qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
         run: |
-          mkdir build #&& cd build
-          #cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
-          #ninja
-          #file ./juffed
+          mkdir build && cd build
+          cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
+          ninja
+          file ./juffed
 
     - name: Release | Upload deb packages
       if: matrix.configuration == 'Release'
