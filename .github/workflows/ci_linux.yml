@@ -8,7 +8,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        configuration: [Release, Debug]
+        configuration: [RelWithDebInfo, Debug]
         platform: [armv7, aarch64, i386, amd64]
         exclude:
           - {configuration: Debug, platform: armv7}
