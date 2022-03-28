@@ -91,7 +91,7 @@ jobs:
         # GitHub token used for caching Docker images in project's public package registry
         githubToken: ${{ github.token }}
         run: |
-          cat /etc/apt/sources.list
+          export DEBIAN_FRONTEND=noninteractive
           apt-get update
           apt-get install cmake ninja-build qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
           mkdir build && cd build
