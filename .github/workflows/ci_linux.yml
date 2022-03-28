@@ -90,6 +90,9 @@ jobs:
         distro: ubuntu20.04
         # GitHub token used for caching Docker images in project's public package registry
         githubToken: ${{ github.token }}
+        # Mount the juffed directory as /artifacts in the container
+        dockerRunArgs: |
+          --volume "/home/runner/work/juffed:/artifacts"
         # Install dependencies in the container. They will be cached
         install: |
           export DEBIAN_FRONTEND=noninteractive
@@ -109,6 +112,7 @@ jobs:
           # Will use regular dpkg-buildpackage instead of debuild because of this bug: https://bugs.launchpad.net/cloud-images/+bug/1881217
           #debuild -b -uc -us
           dpkg-buildpackage -b -uc -us
+          cd .. && ls -la && cp *.deb /artifacts && ls -la /artifacts
 
     - name: RelWithDebInfo | Upload deb packages
       if: matrix.configuration == 'RelWithDebInfo'
