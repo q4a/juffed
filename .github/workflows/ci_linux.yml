@@ -106,7 +106,9 @@ jobs:
           apt-get install -q -y pkg-config devscripts debhelper libenca-dev
         run: |
           cmake --version
-          debuild -b -uc -us
+          # Will use regular dpkg-buildpackage instead of debuild because of this bug: https://bugs.launchpad.net/cloud-images/+bug/1881217
+          #debuild -b -uc -us
+          dpkg-buildpackage -b -uc -us
 
     - name: Release | Upload deb packages
       if: matrix.configuration == 'Release'
