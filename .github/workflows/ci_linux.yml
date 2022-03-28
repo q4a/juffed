@@ -103,12 +103,11 @@ jobs:
           fi
           #end# install cmake >=3.18
           apt-get install -q -y gcc g++ cmake ninja-build qtbase5-dev qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
+          # Install debuild dependencies
+          apt-get install -q -y devscripts debhelper libenca-dev
         run: |
           cmake --version
-          mkdir build && cd build
-          cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
-          ninja
-          file ./juffed
+          debuild -b -uc -us
 
     - name: Release | Upload deb packages
       if: matrix.configuration == 'Release'
