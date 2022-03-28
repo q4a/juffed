@@ -9,7 +9,7 @@ jobs:
       fail-fast: false
       matrix:
         configuration: [Release, Debug]
-        platform: [aarch64, i386, amd64]#armv7, 
+        platform: [armv7, i386, amd64]#aarch64, 
         exclude:
           - {configuration: Debug, platform: armv7}
           - {configuration: Debug, platform: aarch64}
@@ -103,6 +103,7 @@ jobs:
           # -install cmake >=3.18
           apt-get install -q -y gcc g++ cmake ninja-build qtbase5-dev qttools5-dev libqscintilla2-qt5-dev libqtermwidget5-0-dev libutf8proc-dev
         run: |
+          cmake --version
           mkdir build && cd build
           cmake .. -G Ninja -DCMAKE_BUILD_TYPE=${{matrix.configuration}}
           ninja
