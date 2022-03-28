@@ -96,7 +96,7 @@ jobs:
           apt-get update -q -y
           #begin# install cmake >=3.18 to fix for cmake bug on qemu+armhf: https://gitlab.kitware.com/cmake/cmake/-/issues/20568
           if [ "${{ matrix.platform }}" = "armv7" ]; then
-            sudo apt-get install gpg wget
+            apt-get install gpg wget
             wget --no-check-certificate https://apt.kitware.com/ubuntu/pool/main/c/cmake/cmake_3.20.5-0kitware1ubuntu20.04.1_armhf.deb
             wget --no-check-certificate https://apt.kitware.com/ubuntu/pool/main/c/cmake/cmake-data_3.20.5-0kitware1ubuntu20.04.1_all.deb
             dpkg -i cmake*.deb
